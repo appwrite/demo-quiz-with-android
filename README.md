@@ -22,5 +22,5 @@ If you get stuck anywhere, hop onto one of our [support channels in discord](htt
 
 ## 📝 License
 
-Copyright © 2021 [Damodar Lohani]](https://github.com/lohanidamodar).<br />
+Copyright © 2021 [Damodar Lohani](https://github.com/lohanidamodar).<br />
 This project is [MIT](./LICENSE.md) licensed.
