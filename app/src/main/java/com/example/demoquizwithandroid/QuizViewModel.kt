@@ -35,10 +35,6 @@ class QuizViewModel : ViewModel() {
     val correct = MutableLiveData<Int>().apply { value = 0 }
 
     private fun getQuestions() {
-        println(url)
-        println(projectId)
-        println(databaseId)
-        println(collectionId)
         viewModelScope.launch {
             try {
                 val response = db.listDocuments(databaseId = databaseId, collectionId = collectionId)
