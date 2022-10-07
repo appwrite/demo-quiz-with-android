@@ -22,7 +22,7 @@ Now, add a couple of questions to this collection to complete the setup of conso
 
 ## Setup API IDs
 
-You need to make some changes in `app/src/main/res/values/api_info.xml`:
+You need to make some changes in `QuizViewModel.kt`:
 
 - **url**: This is the endpoint URL. If you are testing the app on an android studio emulator and appwrite is configured on localhost, then you don't need to change it. Otherwise, you will need to change the hostname to the URL that you had set while initiating appwrite.
 
