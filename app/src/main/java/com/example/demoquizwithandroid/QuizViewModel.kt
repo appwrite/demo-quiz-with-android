@@ -38,7 +38,13 @@ class QuizViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = db.listDocuments(databaseId = databaseId, collectionId = collectionId)
-                val questions : List<QuestionModel> = response.documents.map { QuestionModel(question = it.data["question"] as String, options = it.data["options"] as List<String>, answer = it.data["answer"] as String) }
+                val questions: List<QuestionModel> = response.documents.map { 
+                    QuestionModel(
+                        question = it.data["question"] as String, 
+                        options = it.data["options"] as List<String>, 
+                        answer = it.data["answer"] as String
+                    )
+                }
                 _questions.postValue(questions)
             } catch(e : AppwriteException) {
                 Log.e("Get questions",e.message.toString())
