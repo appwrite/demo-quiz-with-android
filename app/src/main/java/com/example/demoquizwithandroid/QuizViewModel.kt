@@ -12,10 +12,10 @@ import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
 
 class QuizViewModel : ViewModel() {
-    private val url = App.appResources!!.getString(R.string.URL)
-    private val projectId = App.appResources!!.getString(R.string.PROJECT_ID)
-    private val databaseId = App.appResources!!.getString(R.string.DATABASE_ID)
-    private val collectionId = App.appResources!!.getString(R.string.COLLECTION_ID)
+    private val url = "https://10.0.2.2:443/v1"
+    private val projectId = "633f811aaef060067cae"
+    private val databaseId = "633f812b13dee5884d5f"
+    private val collectionId = "633f8131876eaeb964df"
     lateinit var client : Client
     fun create(context: Context) {
         client = Client(context)
