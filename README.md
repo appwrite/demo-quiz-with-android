@@ -7,7 +7,7 @@ Simple quiz application built with Android and Appwrite
 - Clone the repository
 
 ```sh
-git clone https://github.com/lohanidamodar/demo-quiz-with-android
+git clone https://github.com/appwrite/demo-quiz-with-android
 ```
 
 - Import into Android Studio and run!

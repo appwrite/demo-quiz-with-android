@@ -59,7 +59,7 @@ class QuizActivity : AppCompatActivity() {
         val rbSelected : RadioButton = findViewById(rbGroup.checkedRadioButtonId) ?: return
         val ans: String = rbSelected.text.toString()
         if (ans == currentQuestion!!.answer) {
-            viewModel.correct.postValue(viewModel.correct.value?.inc())
+            viewModel.correct.value = viewModel.correct.value?.inc()
         }
         rbGroup.clearCheck()
         if(viewModel.selectedQuestion.value!! >= (viewModel.questions.value!!.size - 1)) {
