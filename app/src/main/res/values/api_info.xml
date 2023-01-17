@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="URL">https://10.0.2.2:443/v1</string>
+    <string name="PROJECT_ID">[ID]</string>
+    <string name="DATABASE_ID">[ID]</string>
+    <string name="COLLECTION_ID">[ID]</string>
+</resources>

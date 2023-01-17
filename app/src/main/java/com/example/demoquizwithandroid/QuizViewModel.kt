@@ -8,38 +8,44 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.Database
+import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
-import org.json.JSONArray
-import org.json.JSONObject
 
 class QuizViewModel : ViewModel() {
-    private val collectionId = "606d5bd9626ae"
+    private val url = "https://10.0.2.2:443/v1"
+    private val projectId = "633f811aaef060067cae"
+    private val databaseId = "633f812b13dee5884d5f"
+    private val collectionId = "633f8131876eaeb964df"
     lateinit var client : Client
     fun create(context: Context) {
         client = Client(context)
-            .setEndpoint("https://demo.appwrite.io/v1")
-            .setProject("606d5bc9de604")
+            .setEndpoint(url)
+            .setProject(projectId)
+            .setSelfSigned(true)
         getQuestions()
     }
     private val db by lazy {
-        Database(client)
+        Databases(client)
     }
 
-    private val _questions = MutableLiveData<JSONArray>().apply { value = null }
+    private val _questions = MutableLiveData<List<QuestionModel>>().apply { value = null }
 
-
-    val questions: LiveData<JSONArray> = _questions;
+    val questions: LiveData<List<QuestionModel>> = _questions
     val selectedQuestion = MutableLiveData<Int>().apply { value = 0}
     val correct = MutableLiveData<Int>().apply { value = 0 }
 
     private fun getQuestions() {
         viewModelScope.launch {
             try {
-                var response = db.listDocuments(collectionId)
-                val json = response.body?.string() ?: ""
-                var que = JSONObject(json)
-                _questions.postValue( que["documents"] as JSONArray)
+                val response = db.listDocuments(databaseId = databaseId, collectionId = collectionId)
+                val questions: List<QuestionModel> = response.documents.map { 
+                    QuestionModel(
+                        question = it.data["question"] as String, 
+                        options = it.data["options"] as List<String>, 
+                        answer = it.data["answer"] as String
+                    )
+                }
+                _questions.postValue(questions)
             } catch(e : AppwriteException) {
                 Log.e("Get questions",e.message.toString())
             }
